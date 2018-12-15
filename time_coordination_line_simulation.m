@@ -156,10 +156,12 @@ y2 = [y2,y_coordinate_2];
 plot(W1(1),W1(2),'x');
 
 hold on
+    xlabel('X(m)');
+    ylabel('Y(m)');
 plot(W2(1),W2(2),'x');
-plot(x1,y1);
+plot(x1,y1,'LineWidth',2);
 %hold on
-plot(x2,y2);
+plot(x2,y2,'LineWidth',2);
 axis([-2 30 0 6])
 
 pause(dt);

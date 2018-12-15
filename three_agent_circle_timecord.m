@@ -10,6 +10,10 @@ v1_dash = (2*pi*radius1)/total_time;
 v2_dash = (2*pi*radius2)/total_time;
 v3_dash = (2*pi*radius3)/total_time;
 
+% v1_dash = 20;
+% v2_dash = 20;
+% v3_dash = 20;
+
 %% agent 1
 A1 = [0 0 0;
       0 0 1;
@@ -184,6 +188,9 @@ for c = 1:2000
     if v3(2) < 0
         v3(2)= -v3(2);
     end
+    if v2(2) < 20
+        v2(2)= 20;
+    end
     
     %% updating states
     si_2 = si_2 + v2(1)*dt;
@@ -231,10 +238,10 @@ for c = 1:2000
     plot(0,0,'o');
     plot(W2(1),W2(2),'x');
     plot(W3(1),W3(2),'x');
-    plot(x1,y1);
+    plot(x1,y1 ,'LineWidth',2 );
     %hold on
-    plot(x2,y2);
-    plot(x3,y3);
+    plot(x2,y2 , 'LineWidth',2);
+    plot(x3,y3 , 'LineWidth',2);
     axis([-110 110 -110 110])
     axis square
 

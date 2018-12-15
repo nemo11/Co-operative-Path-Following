@@ -123,7 +123,7 @@ for c = 1:2000
     plot(W2(1),W2(2),'x');
     hold on
     plot(0,0,'o');
-    plot(x2,y2);
+    plot(x2,y2 ,'LineWidth',2 );
     axis([-90 90 -90 90])
 
 pause(dt);
