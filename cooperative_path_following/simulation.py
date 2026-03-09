@@ -48,6 +48,7 @@ class Simulation:
             d, Vd = agent.circle_errors(radius, v_dash)
             X = np.array([d, Vd])
             u = -K @ X
+            # Feedforward: subtract nominal angular velocity (v_dash/radius)
             v = u[0] - v_dash / radius
             agent.update(v, v_dash, self.dt)
 
@@ -106,7 +107,8 @@ class Simulation:
             X2 = np.array([cor2_1, cor2_2, d2, Vd2])
             X3 = np.array([cor3, d3, Vd3])
 
-            # Compute control
+            # Compute control with feedforward compensation
+            # (feedforward = v_dash/2 for angular velocity offset on circles)
             u1 = -K1 @ X1
             v1 = u1 - np.array([0.0, vd1 / 2])
 
@@ -116,10 +118,11 @@ class Simulation:
             u3 = -K3 @ X3
             v3 = u3 - np.array([0.0, vd3 / 2])
 
-            # Velocity constraints
-            v1[1] = max(abs(v1[1]), 0.0)
+            # Velocity constraints: ensure non-negative linear velocity
+            # (matches MATLAB: if v(2)<0, v(2)=-v(2); if v2(2)<20, v2(2)=20)
+            v1[1] = abs(v1[1])
             v2[1] = max(abs(v2[1]), 20.0)
-            v3[1] = max(abs(v3[1]), 0.0)
+            v3[1] = abs(v3[1])
 
             # Update agents
             a2.update(v2[0], v2[1], self.dt)

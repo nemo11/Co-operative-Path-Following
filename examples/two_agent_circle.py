@@ -22,6 +22,10 @@ def main():
     A[1, 2] = 1.0
     A[3, 4] = 1.0
 
+    # B has 5 columns: [u1, u2, u3, u4, f] where the 5th column (f) is a
+    # feedforward/centripetal term.  Only the first 4 columns are controllable
+    # inputs, so B[:, :4] is passed to the LQR solver (matches MATLAB:
+    # K = lqr(A, B(:,1:4), Q, R)).
     B = np.array([
         [0.0, 0.0, 1.0 / radius1, -1.0 / radius2, 0.0],
         [0.0, 0.0, 0.0, 0.0, 0.0],
@@ -47,6 +51,8 @@ def main():
 
     for _ in range(total_steps):
         # Recompute B based on velocity ordering
+        # Note: this comparison is preserved from the original MATLAB code
+        # (time_coordination_circle_simulation.m, line 91: "if u(3) > u(2)")
         if u[2] > u[1]:
             B_curr = np.array([
                 [0.0, 0.0, 1.0 / radius1, -1.0 / radius2, 0.0],

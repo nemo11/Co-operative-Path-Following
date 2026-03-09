@@ -49,6 +49,9 @@ def main():
     u = np.array([0.0, 0.0, 4.0, 2.0])  # initial [si1_dot, si2_dot, v1, v2]
 
     for _ in range(total_steps):
+        # Recompute B sign based on velocity ordering
+        # Note: this comparison is preserved from the original MATLAB code
+        # (time_coordination_line_simulation.m, line 90: "if u(3) > u(2)")
         if u[2] > u[1]:
             B_curr = np.array([
                 [0.0, 0.0, 1.0, -1.0],
