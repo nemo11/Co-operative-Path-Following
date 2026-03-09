@@ -76,12 +76,14 @@ Run any example from the `examples/` directory:
 | `three_agent_circle.py` | 3 agents, circle, time coordination | `three_agent_circle_timecord.m` |
 | `three_agent_line.py` | 3 agents, line, time coordination | `three_agent_line_timecord.m` |
 | `line_to_circle.py` | 3 agents, hybrid line→circle | `line_circle.m` |
+| `video_three_agent_circle.py` | Video of 3 agents on circles | — |
 
 ```bash
 cd examples
 python single_circle.py
 python three_agent_circle.py
 python line_to_circle.py
+python video_three_agent_circle.py   # generates three_agent_circle.gif
 ```
 
 ## Package Structure

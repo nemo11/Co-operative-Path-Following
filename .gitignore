@@ -22,8 +22,10 @@ env/
 .DS_Store
 Thumbs.db
 
-# Generated plots (from running examples)
+# Generated plots and videos (from running examples)
 *.png
+*.gif
+*.mp4
 
 # Pytest
 .pytest_cache/
